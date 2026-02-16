@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Surprise</title>
+    <style>
+        /* تموجات الخلفية */
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(120deg, #000080, #000000);
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            color: white;
+            flex-direction: column;
+        }
+
+        .waves {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 50% 50%, rgba(0,0,255,0.2), transparent 70%);
+            animation: wave 10s infinite linear;
+        }
+
+        @keyframes wave {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            50% { transform: translate(-50%, -50%) rotate(180deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .content {
+            position: relative;
+            text-align: center;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: 60px;
+            margin-bottom: 20px;
+            display: none; /* مخفية بالبداية */
+        }
+
+        img {
+            width: 500px;
+            transform: rotate(90deg) rotateY(180deg); /* بالعرض ومقلوبة للجهه الثانية */
+            display: none;
+            transition: opacity 1s;
+            opacity: 0;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 10px;
+            background: #1E90FF;
+            color: white;
+        }
+
+        button:hover {
+            background: #00BFFF;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="waves"></div>
+
+    <div class="content">
+        <h1 id="surpriseText">Surprise</h1> <!-- مخفية بالبداية -->
+        <button id="clickButton" onclick="showImage()">Click Me</button>
+        <br><br>
+        <img id="pic" src="meow.jpg">
+    </div>
+
+    <script>
+        function showImage() {
+            const pic = document.getElementById("pic");
+            const button = document.getElementById("clickButton");
+            const text = document.getElementById("surpriseText");
+
+            // إظهار الصورة تدريجيًا
+            pic.style.display = "block";
+            setTimeout(() => { pic.style.opacity = 1; }, 50);
+
+            // إخفاء الزر
+            button.style.display = "none";
+
+            // إظهار كلمة Surprise
+            text.style.display = "block";
+        }
+    </script>
+
+</body>
+</html>
